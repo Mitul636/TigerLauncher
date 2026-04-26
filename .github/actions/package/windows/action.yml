@@ -1,5 +1,5 @@
 name: Package for Windows
-description: Create a Windows package for Prism Launcher
+description: Create a Windows package for Tiger Launcher
 
 inputs:
   version:

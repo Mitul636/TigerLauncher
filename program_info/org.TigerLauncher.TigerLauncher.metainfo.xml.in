@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
   <id>@Launcher_AppID@</id>
-  <name>Prism Launcher</name>
+  <name>Tiger Launcher</name>
   <summary>Custom Minecraft Launcher to easily manage multiple Minecraft installations at once</summary>
   <developer id="org.TigerLauncher">
-    <name>Prism Launcher Contributors</name>
+    <name>Tiger Launcher Contributors</name>
   </developer>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
   <description>
-    <p>Prism Launcher is a custom launcher for Minecraft that focuses on predictability, long term stability and simplicity.</p>
+    <p>Tiger Launcher is a custom launcher for Minecraft that focuses on predictability, long term stability and simplicity.</p>
     <p>Features:</p>
     <ul>
       <li>Easily install game modifications, such as Fabric, Forge and Quilt</li>
@@ -26,7 +26,7 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <caption>The main Prism Launcher window</caption>
+      <caption>The main Tiger Launcher window</caption>
       <image type="source" width="1030" height="764">https://TigerLauncher.org/img/screenshots/LauncherDark.png</image>
     </screenshot>
     <screenshot>

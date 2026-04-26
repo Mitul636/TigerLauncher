@@ -1,5 +1,5 @@
 name: Package for Linux
-description: Create Linux packages for Prism Launcher
+description: Create Linux packages for Tiger Launcher
 
 inputs:
   version:

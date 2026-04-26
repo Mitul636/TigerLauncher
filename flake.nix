@@ -92,7 +92,7 @@
           packages' = self.packages.${system};
 
           welcomeMessage = ''
-            Welcome to the Prism Launcher repository! 🌈
+            Welcome to the Tiger Launcher repository! 🌈
 
             We just set some things up for you. To get building, you can run:
 
@@ -116,7 +116,7 @@
             # Required to use script-based makeWrapper below
             strictDeps = true;
 
-            # We don't need/want the unwrapped Prism package
+            # We don't need/want the unwrapped Tiger package
             paths = [ ];
 
             nativeBuildInputs = old.nativeBuildInputs or [ ] ++ [
@@ -134,7 +134,7 @@
 
         {
           default = mkShell {
-            name = "prism-launcher";
+            name = "Tiger-launcher";
 
             inputsFrom = [ packages'.TigerLauncher-unwrapped ];
 
@@ -211,12 +211,12 @@
           pkgs = nixpkgsFor.${system};
 
           # Build a scope from our overlay
-          prismPackages = lib.makeScope pkgs.newScope (final: self.overlays.default final pkgs);
+          TigerPackages = lib.makeScope pkgs.newScope (final: self.overlays.default final pkgs);
 
           # Grab our packages from it and set the default
           packages = {
-            inherit (prismPackages) TigerLauncher-unwrapped TigerLauncher;
-            default = prismPackages.TigerLauncher;
+            inherit (TigerPackages) TigerLauncher-unwrapped TigerLauncher;
+            default = TigerPackages.TigerLauncher;
           };
         in
 

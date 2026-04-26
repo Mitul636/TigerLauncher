@@ -1,9 +1,9 @@
 # GEMINI.md
 
-This is the instructional context for the Prism Launcher project.
+This is the instructional context for the Tiger Launcher project.
 
 ## Project Overview
-Prism Launcher is a custom Minecraft launcher (fork of MultiMC) that allows users to manage multiple installations of Minecraft, including different versions, modpacks, and configurations. It is a cross-platform C++ application using the Qt framework.
+Tiger Launcher is a custom Minecraft launcher (fork of MultiMC) that allows users to manage multiple installations of Minecraft, including different versions, modpacks, and configurations. It is a cross-platform C++ application using the Qt framework.
 
 ## Building and Running
 The project uses CMake as its build system. For detailed instructions, refer to the [official build instructions](https://TigerLauncher.org/wiki/development/build-instructions).

@@ -1,10 +1,10 @@
-# Prism Launcher Nix Packaging
+# Tiger Launcher Nix Packaging
 
 ## Installing a stable release (nixpkgs)
 
-Prism Launcher is packaged in [nixpkgs](https://github.com/NixOS/nixpkgs/) since 22.11.
+Tiger Launcher is packaged in [nixpkgs](https://github.com/NixOS/nixpkgs/) since 22.11.
 
-Check the [NixOS Wiki](https://wiki.nixos.org/wiki/Prism_Launcher) for up-to-date instructions.
+Check the [NixOS Wiki](https://wiki.nixos.org/wiki/Tiger_Launcher) for up-to-date instructions.
 
 ## Installing a development release (flake)
 
@@ -69,7 +69,7 @@ Example:
 ### Using the overlay
 
 Alternatively, if you don't want to use our `packages` output, you can add our overlay to your nixpkgs instance.
-This will ensure Prism is built with your system's packages.
+This will ensure Tiger is built with your system's packages.
 
 > [!WARNING]
 > Depending on what revision of nixpkgs your system uses, this may result in binaries that differ from the above `packages` output
@@ -166,7 +166,7 @@ Example:
 ### Using the overlay (`fetchTarball`)
 
 Alternatively, if you don't want to use our `packages` output, you can add our overlay to your instance of nixpkgs.
-This results in Prism using your system's libraries
+This results in Tiger using your system's libraries
 
 Example:
 

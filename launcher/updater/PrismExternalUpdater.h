@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 /*
- *  Prism Launcher - Minecraft Launcher
+ *  Tiger Launcher - Minecraft Launcher
  *  Copyright (C) 2023 Rachel Powers <508861+Ryex@users.noreply.github.com>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,12 +30,12 @@
  * An implementation for the updater on windows and linux that uses out external updater.
  */
 
-class PrismExternalUpdater : public ExternalUpdater {
+class TigerExternalUpdater : public ExternalUpdater {
     Q_OBJECT
 
    public:
-    PrismExternalUpdater(QWidget* parent, const QString& appDir, const QString& dataDir);
-    ~PrismExternalUpdater() override;
+    TigerExternalUpdater(QWidget* parent, const QString& appDir, const QString& dataDir);
+    ~TigerExternalUpdater() override;
 
     /*!
      * Check for updates manually, showing the user a progress bar and an alert if no updates are found.

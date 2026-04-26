@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 /*
- *  Prism Launcher - Minecraft Launcher
+ *  Tiger Launcher - Minecraft Launcher
  *  Copyright (C) 2023 Rachel Powers <508861+Ryex@users.noreply.github.com>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
  *
  */
 
-#include "PrismExternalUpdater.h"
+#include "TigerExternalUpdater.h"
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -39,7 +39,7 @@
 
 #include "ui/dialogs/UpdateAvailableDialog.h"
 
-class PrismExternalUpdater::Private {
+class TigerExternalUpdater::Private {
    public:
     QDir appDir;
     QDir dataDir;
@@ -53,8 +53,8 @@ class PrismExternalUpdater::Private {
     QWidget* parent{};
 };
 
-PrismExternalUpdater::PrismExternalUpdater(QWidget* parent, const QString& appDir, const QString& dataDir)
-    : priv(new PrismExternalUpdater::Private())
+TigerExternalUpdater::TigerExternalUpdater(QWidget* parent, const QString& appDir, const QString& dataDir)
+    : priv(new TigerExternalUpdater::Private())
 {
     priv->appDir = QDir(appDir);
     priv->dataDir = QDir(dataDir);
@@ -80,7 +80,7 @@ PrismExternalUpdater::PrismExternalUpdater(QWidget* parent, const QString& appDi
     }
 }
 
-PrismExternalUpdater::~PrismExternalUpdater()
+TigerExternalUpdater::~TigerExternalUpdater()
 {
     if (priv->updateTimer.isActive()) {
         priv->updateTimer.stop();
@@ -90,12 +90,12 @@ PrismExternalUpdater::~PrismExternalUpdater()
     delete priv;
 }
 
-void PrismExternalUpdater::checkForUpdates()
+void TigerExternalUpdater::checkForUpdates()
 {
     checkForUpdates(true);
 }
 
-void PrismExternalUpdater::checkForUpdates(bool triggeredByUser)
+void TigerExternalUpdater::checkForUpdates(bool triggeredByUser)
 {
     QProgressDialog progress(tr("Checking for updates..."), "", 0, 0, priv->parent);
     progress.setCancelButton(nullptr);
@@ -231,22 +231,22 @@ void PrismExternalUpdater::checkForUpdates(bool triggeredByUser)
     resetAutoCheckTimer();
 }
 
-bool PrismExternalUpdater::getAutomaticallyChecksForUpdates()
+bool TigerExternalUpdater::getAutomaticallyChecksForUpdates()
 {
     return priv->autoCheck;
 }
 
-double PrismExternalUpdater::getUpdateCheckInterval()
+double TigerExternalUpdater::getUpdateCheckInterval()
 {
     return priv->updateInterval;
 }
 
-bool PrismExternalUpdater::getBetaAllowed()
+bool TigerExternalUpdater::getBetaAllowed()
 {
     return priv->allowBeta;
 }
 
-void PrismExternalUpdater::setAutomaticallyChecksForUpdates(bool check)
+void TigerExternalUpdater::setAutomaticallyChecksForUpdates(bool check)
 {
     priv->autoCheck = check;
     priv->settings->setValue("auto_check", check);
@@ -254,7 +254,7 @@ void PrismExternalUpdater::setAutomaticallyChecksForUpdates(bool check)
     resetAutoCheckTimer();
 }
 
-void PrismExternalUpdater::setUpdateCheckInterval(double seconds)
+void TigerExternalUpdater::setUpdateCheckInterval(double seconds)
 {
     priv->updateInterval = seconds;
     priv->settings->setValue("update_interval", seconds);
@@ -262,14 +262,14 @@ void PrismExternalUpdater::setUpdateCheckInterval(double seconds)
     resetAutoCheckTimer();
 }
 
-void PrismExternalUpdater::setBetaAllowed(bool allowed)
+void TigerExternalUpdater::setBetaAllowed(bool allowed)
 {
     priv->allowBeta = allowed;
     priv->settings->setValue("auto_beta", allowed);
     priv->settings->sync();
 }
 
-void PrismExternalUpdater::resetAutoCheckTimer()
+void TigerExternalUpdater::resetAutoCheckTimer()
 {
     if (priv->autoCheck && priv->updateInterval > 0) {
         auto now = QDateTime::currentDateTime();
@@ -293,23 +293,23 @@ void PrismExternalUpdater::resetAutoCheckTimer()
     }
 }
 
-void PrismExternalUpdater::connectTimer()
+void TigerExternalUpdater::connectTimer()
 {
-    connect(&priv->updateTimer, &QTimer::timeout, this, &PrismExternalUpdater::autoCheckTimerFired);
+    connect(&priv->updateTimer, &QTimer::timeout, this, &TigerExternalUpdater::autoCheckTimerFired);
 }
 
-void PrismExternalUpdater::disconnectTimer()
+void TigerExternalUpdater::disconnectTimer()
 {
-    disconnect(&priv->updateTimer, &QTimer::timeout, this, &PrismExternalUpdater::autoCheckTimerFired);
+    disconnect(&priv->updateTimer, &QTimer::timeout, this, &TigerExternalUpdater::autoCheckTimerFired);
 }
 
-void PrismExternalUpdater::autoCheckTimerFired()
+void TigerExternalUpdater::autoCheckTimerFired()
 {
     qDebug() << "Auto update Timer fired";
     checkForUpdates(false);
 }
 
-void PrismExternalUpdater::offerUpdate(const QString& version_name, const QString& version_tag, const QString& release_notes)
+void TigerExternalUpdater::offerUpdate(const QString& version_name, const QString& version_tag, const QString& release_notes)
 {
     priv->settings->beginGroup("skip");
     auto should_skip = priv->settings->value(version_tag, false).toBool();
@@ -346,7 +346,7 @@ void PrismExternalUpdater::offerUpdate(const QString& version_name, const QStrin
     }
 }
 
-void PrismExternalUpdater::performUpdate(const QString& version_tag)
+void TigerExternalUpdater::performUpdate(const QString& version_tag)
 {
     QProcess proc;
     auto exe_name = QStringLiteral("%1_updater").arg(BuildConfig.LAUNCHER_APP_BINARY_NAME);
