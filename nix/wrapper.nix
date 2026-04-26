@@ -22,7 +22,7 @@
   openal,
   pciutils,
   pipewire,
-  prismlauncher-unwrapped,
+  TigerLauncher-unwrapped,
   stdenv,
   symlinkJoin,
   udev,
@@ -51,13 +51,13 @@ assert lib.assertMsg (
 ) "textToSpeechSupport only has an effect on Linux.";
 
 let
-  prismlauncher' = prismlauncher-unwrapped.override { inherit msaClientID; };
+  TigerLauncher' = TigerLauncher-unwrapped.override { inherit msaClientID; };
 in
 
 symlinkJoin {
-  name = "prismlauncher-${prismlauncher'.version}";
+  name = "TigerLauncher-${TigerLauncher'.version}";
 
-  paths = [ prismlauncher' ];
+  paths = [ TigerLauncher' ];
 
   nativeBuildInputs = [ kdePackages.wrapQtAppsHook ];
 
@@ -113,14 +113,14 @@ symlinkJoin {
       ++ additionalPrograms;
 
     in
-    [ "--prefix PRISMLAUNCHER_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks}" ]
+    [ "--prefix TigerLauncher_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks}" ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
       "--set LD_LIBRARY_PATH ${addDriverRunpath.driverLink}/lib:${lib.makeLibraryPath runtimeLibs}"
       "--prefix PATH : ${lib.makeBinPath runtimePrograms}"
     ];
 
   meta = {
-    inherit (prismlauncher'.meta)
+    inherit (TigerLauncher'.meta)
       description
       longDescription
       homepage

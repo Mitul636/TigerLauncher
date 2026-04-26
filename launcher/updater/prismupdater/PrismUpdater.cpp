@@ -971,13 +971,13 @@ void PrismUpdaterApp::backupAppDir()
     if (file_list.isEmpty()) {
         // best guess
         if (BuildConfig.BUILD_ARTIFACT.toLower().contains("linux")) {
-            file_list.append({ "PrismLauncher", "bin", "share", "lib" });
+            file_list.append({ "TigerLauncher", "bin", "share", "lib" });
         } else {  // windows by process of elimination
             file_list.append({
                 "jars",
-                "prismlauncher.exe",
-                "prismlauncher_filelink.exe",
-                "prismlauncher_updater.exe",
+                "TigerLauncher.exe",
+                "TigerLauncher_filelink.exe",
+                "TigerLauncher_updater.exe",
                 "qtlogging.ini",
                 "imageformats",
                 "iconengines",

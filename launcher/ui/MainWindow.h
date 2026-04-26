@@ -61,6 +61,9 @@ class InstanceView;
 class KonamiCode;
 class InstanceTask;
 class LabeledToolButton;
+class HomeView;
+class ModBrowserView;
+class PvPHubView;
 
 namespace Ui {
 class MainWindow;
@@ -236,6 +239,9 @@ class MainWindow : public QMainWindow {
     Ui::MainWindow* ui;
     // these are managed by Qt's memory management model!
     InstanceView* view = nullptr;
+    HomeView* homeView = nullptr;
+    ModBrowserView* modBrowserView = nullptr;
+    PvPHubView* pvpHubView = nullptr;
     InstanceProxyModel* proxymodel = nullptr;
     QToolButton* newsLabel = nullptr;
     QLabel* m_statusLeft = nullptr;

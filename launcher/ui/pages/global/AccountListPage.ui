@@ -53,6 +53,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionAddMicrosoft"/>
+   <addaction name="actionAddElyBy"/>
    <addaction name="actionAddOffline"/>
    <addaction name="actionRefresh"/>
    <addaction name="actionRemove"/>
@@ -63,6 +64,11 @@
    <addaction name="separator"/>
    <addaction name="actionManageSkins"/>
   </widget>
+  <action name="actionAddElyBy">
+   <property name="text">
+    <string>Add &amp;Ely.by</string>
+   </property>
+  </action>
   <action name="actionSetDefault">
    <property name="text">
     <string>&amp;Set Default</string>

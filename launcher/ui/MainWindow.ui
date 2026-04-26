@@ -27,6 +27,67 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <item>
+     <widget class="QListWidget" name="sideBar">
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>24</width>
+        <height>24</height>
+       </size>
+      </property>
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <item>
+       <property name="text">
+        <string>Home</string>
+       </property>
+       <property name="icon">
+        <iconset theme="news"/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Instances</string>
+       </property>
+       <property name="icon">
+        <iconset theme="launcher"/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PvP Hub</string>
+       </property>
+       <property name="icon">
+        <iconset theme="cat"/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Mods</string>
+       </property>
+       <property name="icon">
+        <iconset theme="centralmods"/>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

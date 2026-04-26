@@ -799,6 +799,8 @@ SET(LAUNCHER_SOURCES
     ApplicationMessage.cpp
     SysInfo.h
     SysInfo.cpp
+    PerformanceOptimizer.h
+    PerformanceOptimizer.cpp
     HardwareInfo.cpp
     HardwareInfo.h
 
@@ -832,6 +834,12 @@ SET(LAUNCHER_SOURCES
     ui/GuiUtil.cpp
     ui/MainWindow.h
     ui/MainWindow.cpp
+    ui/HomeView.h
+    ui/HomeView.cpp
+    ui/ModBrowserView.h
+    ui/ModBrowserView.cpp
+    ui/PvPHubView.h
+    ui/PvPHubView.cpp
     ui/InstanceWindow.h
     ui/InstanceWindow.cpp
     ui/ViewLogWindow.h
@@ -1208,6 +1216,9 @@ endif()
 
 qt_wrap_ui(LAUNCHER_UI
     ui/MainWindow.ui
+    ui/HomeView.ui
+    ui/ModBrowserView.ui
+    ui/PvPHubView.ui
     ui/setupwizard/PasteWizardPage.ui
     ui/setupwizard/AutoJavaWizardPage.ui
     ui/setupwizard/LoginWizardPage.ui

@@ -92,6 +92,9 @@
 #include <updater/ExternalUpdater.h>
 #include "InstanceWindow.h"
 
+#include "ui/HomeView.h"
+#include "ui/ModBrowserView.h"
+#include "ui/PvPHubView.h"
 #include "ui/GuiUtil.h"
 #include "ui/ViewLogWindow.h"
 #include "ui/dialogs/AboutDialog.h"
@@ -292,7 +295,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // Create the instance list widget
     {
-        view = new InstanceView(ui->centralWidget);
+        view = new InstanceView(this);
 
         view->setSelectionMode(QAbstractItemView::SingleSelection);
         // FIXME: leaks ListViewDelegate
@@ -332,7 +335,19 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         view->setSourceOfGroupCollapseStatus(
             [](const QString& groupName) -> bool { return APPLICATION->instances()->isGroupCollapsed(groupName); });
         connect(view, &InstanceView::groupStateChanged, APPLICATION->instances(), &InstanceList::on_GroupStateChanged);
-        ui->horizontalLayout->addWidget(view);
+        
+        // Add pages to stacked widget
+        homeView = new HomeView(this);
+        pvpHubView = new PvPHubView(this);
+        modBrowserView = new ModBrowserView(this);
+
+        ui->stackedWidget->addWidget(homeView);       // Index 0
+        ui->stackedWidget->addWidget(view);           // Index 1
+        ui->stackedWidget->addWidget(pvpHubView);      // Index 2
+        ui->stackedWidget->addWidget(modBrowserView);  // Index 3
+
+        connect(ui->sideBar, &QListWidget::currentRowChanged, ui->stackedWidget, &QStackedWidget::setCurrentIndex);
+        ui->sideBar->setCurrentRow(1);
     }
     // The cat background
     {
@@ -1019,10 +1034,10 @@ void MainWindow::processURLs(QList<QUrl> urls)
                     receivedData.insert(it->first, it->second);
                 emit APPLICATION->oauthReplyRecieved(receivedData);
                 continue;
-            } else if ((url.scheme() == "prismlauncher" || url.scheme() == BuildConfig.LAUNCHER_APP_BINARY_NAME) && isExternalURLImport) {
-                // PrismLauncher URL protocol modpack import
+            } else if ((url.scheme() == "TigerLauncher" || url.scheme() == BuildConfig.LAUNCHER_APP_BINARY_NAME) && isExternalURLImport) {
+                // TigerLauncher URL protocol modpack import
                 // works for any prism fork
-                // preferred import format: prismlauncher://import?url=ENCODED
+                // preferred import format: TigerLauncher://import?url=ENCODED
                 const auto host = url.host().toLower();
                 const auto path = url.path();
 
@@ -1036,7 +1051,7 @@ void MainWindow::processURLs(QList<QUrl> urls)
                     }
                 }
 
-                // alternative import format: prismlauncher://import/ENCODED
+                // alternative import format: TigerLauncher://import/ENCODED
                 if (encodedTarget.isEmpty()) {
                     QString p = path;
 

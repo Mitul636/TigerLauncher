@@ -75,7 +75,7 @@
 #include "minecraft/update/LibrariesTask.h"
 
 #include "java/JavaUtils.h"
-
+#include "PerformanceOptimizer.h"
 #include "icons/IconList.h"
 
 #include "mod/ModFolderModel.h"
@@ -224,6 +224,8 @@ void MinecraftInstance::loadSpecificSettings()
         m_settings->registerOverride(global_settings->getSetting("EnableMangoHud"), performanceOverride);
         m_settings->registerOverride(global_settings->getSetting("UseDiscreteGpu"), performanceOverride);
         m_settings->registerOverride(global_settings->getSetting("UseZink"), performanceOverride);
+        m_settings->registerOverride(global_settings->getSetting("AutoOptimize"), performanceOverride);
+        m_settings->registerOverride(global_settings->getSetting("OptimizationProfile"), performanceOverride);
 
         // Miscellaneous
         auto miscellaneousOverride = m_settings->registerSetting("OverrideMiscellaneous", false);
@@ -608,6 +610,23 @@ QStringList MinecraftInstance::javaArguments()
 
     int min = settings()->get("MinMemAlloc").toInt();
     int max = settings()->get("MaxMemAlloc").toInt();
+
+    if (settings()->get("AutoOptimize").toBool()) {
+        QString profileStr = settings()->get("OptimizationProfile").toString();
+        PerformanceOptimizer::Profile profile = PerformanceOptimizer::Profile::Low;
+        if (profileStr == "Potato") profile = PerformanceOptimizer::Profile::Potato;
+        else if (profileStr == "Low") profile = PerformanceOptimizer::Profile::Low;
+        else if (profileStr == "Medium") profile = PerformanceOptimizer::Profile::Medium;
+        else if (profileStr == "High") profile = PerformanceOptimizer::Profile::High;
+
+        QString mcVersion = m_components->getComponentVersion("net.minecraft");
+        auto optimizations = PerformanceOptimizer::getOptimizations(mcVersion, profile);
+        
+        min = optimizations.minMemoryMiB;
+        max = optimizations.maxMemoryMiB;
+        args.append(optimizations.jvmArgs);
+    }
+
     if (min < max) {
         args << QString("-Xms%1m").arg(min);
         args << QString("-Xmx%1m").arg(max);

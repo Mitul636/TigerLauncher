@@ -138,6 +138,11 @@ void AccountListPage::on_actionAddMicrosoft_triggered()
     }
 }
 
+void AccountListPage::on_actionAddElyBy_triggered()
+{
+    CustomMessageBox::selectable(this, tr("Ely.by Login"), tr("Ely.by login integration is currently being implemented. In the meantime, you can use a custom auth server if you have one."), QMessageBox::Information)->show();
+}
+
 void AccountListPage::on_actionAddOffline_triggered()
 {
     if (!m_accounts->anyAccountIsValid()) {

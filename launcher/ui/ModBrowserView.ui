@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ModBrowserView</class>
+ <widget class="QWidget" name="ModBrowserView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <item>
+    <widget class="QLineEdit" name="searchEdit">
+     <property name="placeholderText">
+      <string>Search for mods on Modrinth &amp; CurseForge...</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="resultsLayout">
+     <item>
+      <widget class="QGroupBox" name="modrinthGroup">
+       <property name="title">
+        <string>Modrinth</string>
+       </property>
+       <layout class="QVBoxLayout" name="modrinthLayout">
+        <item>
+         <widget class="QListView" name="modrinthList"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="curseforgeGroup">
+       <property name="title">
+        <string>CurseForge</string>
+       </property>
+       <layout class="QVBoxLayout" name="curseforgeLayout">
+        <item>
+         <widget class="QListView" name="curseforgeList"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
